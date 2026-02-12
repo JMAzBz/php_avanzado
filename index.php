@@ -3,21 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arreglos</title>
+    <title>Arreglos Asociativos</title>
 </head>
 <body>
-    <h1>Recommended Books</h1>
+    /* 
+    A DIFERENCIA DE LOS ARRAY COMUNES EN DONDE SE ACCEDE A LOS ELEMENTOS POR POSICIONES
+    LOS ARREGLOS ASOCIATIVOS SE ACCEDEN POR UNA CLAVE DESCRIPTIVA
+*/    
     <?php 
         $books = [
-            "Do Androids Dream of Electric Sheep",
-            "The Langoliers",
-            "Hail Merry"
+            [ 
+                'name'        => 'Do Androids Dreams of Electric Seep',
+                'author'      => 'Philip K. Dick',
+                'purchaseUrl' => 'http://example.com',
+            ],
+            [
+                'name'        => 'Project Hail Mary',
+                'author'      => 'Andy Weir',
+                'purchaseUrl' => 'http://example.com',
+            ]
         ];
     ?>
-    /** DECIDI TOMAR UNA DE LAS FORMAS MAS ELEGANTES Y LIMPIAS PARA RECORRER MIS DATOS */
     <ul>
         <?php foreach($books as $book) : ?>
-        <li><?= $book ?></li>
+        <li><?= $book['name']?></li>
         <?php endforeach; ?>
     </ul>
 </body>
