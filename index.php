@@ -3,30 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arreglos Asociativos</title>
+    <title>Funciones</title>
 </head>
 <body>
-    /* 
-    A DIFERENCIA DE LOS ARRAY COMUNES EN DONDE SE ACCEDE A LOS ELEMENTOS POR POSICIONES
-    LOS ARREGLOS ASOCIATIVOS SE ACCEDEN POR UNA CLAVE DESCRIPTIVA
-*/    
-    <?php 
-        $books = [
-            [ 
-                'name'        => 'Do Androids Dreams of Electric Seep',
-                'author'      => 'Philip K. Dick',
-                'purchaseUrl' => 'http://example.com',
+    <?php
+        ### HE DEFINIDO UN CÓDIGO FUNCIONAL Y BIEN ESTRUCTURADO PARA EMPEZAR
+        $books =[
+            [
+                'name' => 'Do Androids Dreams of Electric Sheep',
+                'author' => 'Philip k. Dick',
+                'releaseYear' => 1968,
+                'purchaseUrl' => 'http://example.com'
             ],
             [
-                'name'        => 'Project Hail Mary',
-                'author'      => 'Andy Weir',
-                'purchaseUrl' => 'http://example.com',
-            ]
+                'name' => 'Project Hail Mary',
+                'author' => 'Andy Weir',
+                'releaseYear' => 2021,
+                'purchaseUrl' => 'http://example.com'
+            ],
+            [
+                'name' => 'The Martian',
+                'author' => 'Andy Weir',
+                'releaseYear' => 2011,
+                'purchaseUrl' => 'http://example.com'
+            ],
         ];
+
+        function filterByAuthor($books, $author){
+            $filteredBooks = [];
+            foreach ($books as $book){
+                if($book['author'] === $author){
+                    $filteredBooks[] = $book;
+                }
+            }
+            return $filteredBooks;
+        }
     ?>
     <ul>
-        <?php foreach($books as $book) : ?>
-        <li><?= $book['name']?></li>
+        <?php foreach(filterByAuthor($books, 'Andy Weir') as $book) : ?>
+        <li>
+            <a href="<?= $book['purchaseUrl'] ?>">
+                <?=  $book['name'] ?> (<?= $book['releaseYear'] ?>)
+            </a>
+        </li>
         <?php endforeach; ?>
     </ul>
 </body>
