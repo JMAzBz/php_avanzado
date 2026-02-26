@@ -1,3 +1,4 @@
 <?php
+$heading = "About Us";
 
-require 'about.view.php';
+require 'view/about.view.php';
