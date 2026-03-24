@@ -20,15 +20,23 @@ class DateBase
 {
     public $connection;
 ######## HE DECIDIDO CREAR UNA FUNCION CONSTRUCTURA PARA NO EJACUTAR VARIAS VECES A LA CONEXION
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $dsn  = "mysql:host=localhost;port=3306;dbname=demo;charset=utf8mb4";
+    //     $user = "root";
+    //     $pass = "123456789";
+
+    //     $this->connection = new PDO($dsn,$user,$pass);
+    // }
+#######  SEGUNDA VERSION DEL CONSTRUCTOR 
+    public function __construct($config,$user = "root",$pass = "123456789")
     {
-        $dsn  = "mysql:host=localhost;port=3306;dbname=demo;charset=utf8mb4";
-        $user = "root";
-        $pass = "123456789";
+        $dsn = 'mysql:'.http_build_query($config,'',';');
 
-        $this->connection = new PDO($dsn,$user,$pass);
+        $this->connection = new PDO($dsn,$user,$pass,[
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
     }
-
     public function query($query)
     {
         $statement = $this->connection->prepare($query);
