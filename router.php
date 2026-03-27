@@ -25,7 +25,8 @@ $routes = [
 ### (3)CREO UNA FUNCION PARA GESTIONAR MIS CODIGOS DE RESPUESTA
 function abort ($code = 404){
     http_response_code($code);
-    require "view/{$code}.php";
+    require "view/{$code}.php"; 
+    die();
 }
 
 ### (2) CON ESTA FUNCION ACCEDO AL VALOR DE MI ARREGLO
