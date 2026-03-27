@@ -15,8 +15,10 @@ $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 ### (1) SEGUNDA VERSION USANDO array_key_exists
 $routes = [
-    '/' => 'controller/index.php',
+    '/'      => 'controller/index.php',
     '/about' => 'controller/about.php',
+    '/notes' => 'controller/notes.php',
+    '/note'  => 'controller/note.php',
     '/contact' => 'controller/contact.php',
 ];
 

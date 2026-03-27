@@ -2,8 +2,7 @@
 
 require 'functions.php';
 require 'Database.php';
-$config = require 'config.php';
-// require 'router.php';
+require 'router.php';
 
 ######## CONSULTA GENÉRICA
 // $db = new DateBase($config);
@@ -13,9 +12,10 @@ $config = require 'config.php';
 //     echo "<li>". $post['text']."</li>";
 // }
 ######## CONSULTA SELECTIVA
-$db   = new DateBase($config);
-$id = $_GET['id'];
-$query = " SELECT * FROM post WHERE id = :id";
-$post = $db->query($query,['id' => $id]);
+// $db   = new DateBase($config);
+// $id = $_GET['id'];
+// $query = " SELECT * FROM post WHERE id = :id";
+// $post = $db->query($query,['id' => $id]);
 
-dd($post);
+// dd($post);
+
