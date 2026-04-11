@@ -11,7 +11,7 @@ require 'router.php';
 // foreach ($posts as $post)
 // {
 //     echo "<li>". $post['text']."</li>";
-// }
+// }    
 ######## CONSULTA SELECTIVA
 // $db   = new DateBase($config);
 // $id = $_GET['id'];

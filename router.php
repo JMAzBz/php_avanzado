@@ -14,14 +14,7 @@ $url = parse_url($_SERVER['REQUEST_URI'])['path'];
 // }
 
 ### (1) SEGUNDA VERSION USANDO array_key_exists
-$routes = [
-    '/'      => 'controller/index.php',
-    '/about' => 'controller/about.php',
-    '/notes' => 'controller/notes.php',
-    '/note'  => 'controller/note.php',
-    '/contact' => 'controller/contact.php',
-];
-
+$routes = require "routes.php";
 ### (3)CREO UNA FUNCION PARA GESTIONAR MIS CODIGOS DE RESPUESTA
 function abort ($code = 404){
     http_response_code($code);

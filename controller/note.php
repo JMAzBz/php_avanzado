@@ -9,16 +9,20 @@ $id = $_GET['id'];
 
 $user_fk = 2;
 $note = $db->query("SELECT * FROM notes WHERE id = :id",
-['id' => $id])->fetch();
+['id' => $id])->findOrFail();
 
-if(!$note)
-// SI NO ENCUENTRA NOTAS CON ESAS CARACTERISTICAS
-{
-    abort(404);
-}
-// SI LA NOTA NO CORRESPONDE AL USUARIO
-if($note['user_fk'] !== $user_fk){
-    abort(403);
-}
+###### ESTA PORCION DE CODIGO YA LO REFACTORIZE EN DATABASE findOrFail
+// if(!$note)
+// // SI NO ENCUENTRA NOTAS CON ESAS CARACTERISTICAS
+// {
+//     abort(Response::NOT_FOUND);
+// }
+###### ESTA PORCION DE CODIGO YA LO REFACTORIZE EN FUNCTION
+// // SI LA NOTA NO CORRESPONDE AL USUARIO
+// if($note['user_fk'] !== $user_fk){
+//     abort(Response::FORBIDDEN);
+// };
+
+authorize($note['user_fk'] !== $user_fk);
 
 require 'view/note.view.php';

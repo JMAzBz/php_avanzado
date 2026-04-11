@@ -19,6 +19,7 @@
 class DateBase 
 {
     public $connection;
+    public $statement;
 ######## HE DECIDIDO CREAR UNA FUNCION CONSTRUCTURA PARA NO EJACUTAR VARIAS VECES A LA CONEXION
     // public function __construct()
     // {
@@ -29,7 +30,7 @@ class DateBase
     //     $this->connection = new PDO($dsn,$user,$pass);
     // }
 #######  SEGUNDA VERSION DEL CONSTRUCTOR 
-    public function __construct($config,$user = "root",$pass = "123456789")
+    public function __construct($config,$user = "root", $pass = "123456789")
     {
         $dsn = 'mysql:'.http_build_query($config,'',';');
 
@@ -39,8 +40,29 @@ class DateBase
     }
     public function query($query, $param = [])
     {
-        $statement = $this->connection->prepare($query);
-        $statement->execute($param);
-        return $statement;
+        $this->statement = $this->connection->prepare($query);
+        $this->statement->execute($param);
+        return $this;
+    }
+
+    public function get()
+    {
+        return $this->statement->fetchAll();
+    }
+
+    public function find()
+    {
+        return $this->statement->fetch();
+    }
+
+    public function findOrFail()
+    {
+        $result = $this->find();
+
+        if (!$result) {
+            abort(Response::NOT_FOUND);
+        }
+
+        return $result;
     }
 }
